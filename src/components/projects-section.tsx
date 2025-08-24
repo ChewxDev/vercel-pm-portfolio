@@ -140,7 +140,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
                   My Role & Responsibilities
                 </h4>
                 <ul className="text-neutral space-y-1 text-sm">
-                  {project.responsibilities.map(
+                  {project.responsibilities?.map(
                     (responsibility: string, respIndex: number) => (
                       <li
                         key={respIndex}
@@ -149,7 +149,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
                         • {responsibility}
                       </li>
                     )
-                  )}
+                  ) || []}
                 </ul>
               </div>
 
@@ -158,7 +158,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
                   Key Achievements
                 </h4>
                 <ul className="text-neutral space-y-1 text-sm">
-                  {project.achievements.map(
+                  {project.achievements?.map(
                     (achievement: string, achIndex: number) => (
                       <li
                         key={achIndex}
@@ -167,12 +167,12 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
                         • {achievement}
                       </li>
                     )
-                  )}
+                  ) || []}
                 </ul>
               </div>
 
               <div className="flex flex-wrap gap-2 mt-4">
-                {project.skills.map((skill: string, skillIndex: number) => (
+                {project.skills?.map((skill: string, skillIndex: number) => (
                   <span
                     key={skillIndex}
                     className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs"
@@ -180,7 +180,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
                   >
                     {skill}
                   </span>
-                ))}
+                )) || []}
               </div>
             </div>
           </div>
