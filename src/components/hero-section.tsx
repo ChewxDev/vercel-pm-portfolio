@@ -18,15 +18,22 @@ function AnimatedCounter({
   useEffect(() => {
     if (inView) {
       let startTime: number;
+      let animationId: number;
       const animate = (currentTime: number) => {
         if (!startTime) startTime = currentTime;
         const progress = Math.min((currentTime - startTime) / duration, 1);
         setCount(Math.floor(progress * end));
         if (progress < 1) {
-          requestAnimationFrame(animate);
+          animationId = requestAnimationFrame(animate);
         }
       };
-      requestAnimationFrame(animate);
+      animationId = requestAnimationFrame(animate);
+
+      return () => {
+        if (animationId) {
+          cancelAnimationFrame(animationId);
+        }
+      };
     }
   }, [inView, end, duration]);
 

@@ -97,27 +97,13 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
               transition={{ duration: 0.6, delay: index * 0.2 + 0.4 }}
             >
               {project.skills
-                .slice(0, 3)
+                ?.slice(0, 3)
                 .map((skill: string, skillIndex: number) => (
-                  <motion.div
-                    key={skillIndex}
-                    className="flex items-center"
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={
-                      inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -10 }
-                    }
-                    transition={{
-                      duration: 0.4,
-                      delay: index * 0.2 + 0.6 + skillIndex * 0.1,
-                    }}
-                  >
-                    <motion.i
-                      className="fas fa-check-circle text-white/80 mr-2"
-                      whileHover={{ scale: 1.2 }}
-                    />
+                  <div key={skillIndex} className="flex items-center">
+                    <i className="fas fa-check-circle text-white/80 mr-2" />
                     <span className="text-sm">{skill}</span>
-                  </motion.div>
-                ))}
+                  </div>
+                )) || []}
             </motion.div>
           </div>
 
@@ -128,33 +114,24 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
               animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.6, delay: index * 0.2 + 0.3 }}
             >
-              {project.metrics.map((metric: any, metricIndex: number) => (
-                <motion.div
+              {project.metrics?.map((metric: any, metricIndex: number) => (
+                <div
                   key={metricIndex}
                   className="text-center"
                   data-testid={`project-metric-${index}-${metricIndex}`}
-                  whileHover={{ scale: 1.1, y: -5 }}
-                  transition={{ type: "spring", stiffness: 300 }}
                 >
-                  <motion.div
+                  <div
                     className={`text-3xl font-bold mb-1 ${getMetricColor(
                       project.color
                     )}`}
-                    initial={{ scale: 0 }}
-                    animate={inView ? { scale: 1 } : { scale: 0 }}
-                    transition={{
-                      type: "spring",
-                      stiffness: 300,
-                      delay: index * 0.2 + 0.5 + metricIndex * 0.1,
-                    }}
                   >
                     {metric.value}
-                  </motion.div>
+                  </div>
                   <div className="text-sm text-neutral">
                     {metric.description}
                   </div>
-                </motion.div>
-              ))}
+                </div>
+              )) || []}
             </motion.div>
 
             <div className="space-y-4">
@@ -214,7 +191,11 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
 }
 
 export default function ProjectsSection() {
-  const { data: projects, isLoading } = useQuery<Project[]>({
+  const {
+    data: projects,
+    isLoading,
+    error,
+  } = useQuery<Project[]>({
     queryKey: ["/api/projects"],
   });
 
@@ -224,6 +205,32 @@ export default function ProjectsSection() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <div className="animate-pulse">Loading projects...</div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (error) {
+    return (
+      <section id="projects" className="py-20 bg-background">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <div className="text-red-600">
+              Error loading projects. Please try again.
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (!projects || projects.length === 0) {
+    return (
+      <section id="projects" className="py-20 bg-background">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <div>No projects available.</div>
           </div>
         </div>
       </section>
