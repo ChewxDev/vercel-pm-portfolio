@@ -1,0 +1,223 @@
+Team Performance Dashboard - Nicholas Njoku Project Management Template
+
+Project Information
+Project Name,[Insert Project Name]
+Team Lead,Nicholas Njoku
+Reporting Period,[Start Date] to [End Date]
+Dashboard Updated,[Insert Date]
+Review Frequency,Weekly
+
+Executive Summary - Overall Team Health Score: __/100
+Metric Category,Weight,Score,Weighted Score
+Productivity,25%,__/100,__
+Quality,25%,__/100,__
+Collaboration,20%,__/100,__
+Goal Achievement,20%,__/100,__
+Team Satisfaction,10%,__/100,__
+Total,100%,,__/100
+
+Key Performance Indicators (KPIs) Summary
+KPI,Current,Target,Status,Trend
+Project Completion Rate,__%,95%,🟢/🟡/🔴,↑/↓/→
+Quality Score,__%,90%,🟢/🟡/🔴,↑/↓/→
+Team Velocity,__,__,🟢/🟡/🔴,↑/↓/→
+Customer Satisfaction,__%,85%,🟢/🟡/🔴,↑/↓/→
+Team Engagement,__%,80%,🟢/🟡/🔴,↑/↓/→
+
+Status Legend
+🟢 Green,On track or exceeding target
+🟡 Yellow,Slightly below target monitoring required
+🔴 Red,Significantly below target action required
+
+Productivity Metrics - Task Completion & Velocity
+Team Member,Tasks Assigned,Tasks Completed,Completion Rate,Velocity Points,Trend
+[Name],__,__,__%,__,↑/↓/→
+[Name],__,__,__%,__,↑/↓/→
+[Name],__,__,__%,__,↑/↓/→
+[Name],__,__,__%,__,↑/↓/→
+Team Total,__,__,__%,__,↑/↓/→
+
+Sprint/Iteration Performance
+Sprint,Planned Story Points,Completed Story Points,Velocity,Burndown Efficiency
+Sprint 1,__,__,__%,__%
+Sprint 2,__,__,__%,__%
+Sprint 3,__,__,__%,__%
+Current Sprint,__,__,__%,__%
+
+Time Management Analysis
+Metric,This Week,Last Week,Month Average,Target
+Average Hours/Day,__,__,__,8
+Overtime Hours,__,__,__,<2
+Meeting Time %,__%,__%,__%,<25%
+Focus Time %,__%,__%,__%,>60%
+
+Milestone Achievement
+Milestone,Planned Date,Actual/Forecast Date,Status,Days Variance
+Milestone 1,[Date],[Date],Complete/On Track/Delayed,+/- __ days
+Milestone 2,[Date],[Date],Complete/On Track/Delayed,+/- __ days
+Milestone 3,[Date],[Date],Complete/On Track/Delayed,+/- __ days
+
+Quality Metrics - Deliverable Quality Scores
+Deliverable Type,Total Delivered,Defects Found,Defect Rate,Quality Score
+Documentation,__,__,__%,__/100
+Code/Development,__,__,__%,__/100
+Testing Results,__,__,__%,__/100
+Design/Graphics,__,__,__%,__/100
+
+Review & Approval Metrics
+Review Type,Items Reviewed,Passed First Review,Revision Rate,Avg Review Time
+Peer Review,__,__,__%,__ hours
+Management Review,__,__,__%,__ hours
+Client Review,__,__,__%,__ hours
+Quality Assurance,__,__,__%,__ hours
+
+Rework Analysis
+Team Member,Original Tasks,Rework Required,Rework Rate,Time Impact
+[Name],__,__,__%,__ hours
+[Name],__,__,__%,__ hours
+[Name],__,__,__%,__ hours
+Team Average,__,__,__%,__ hours
+
+Collaboration & Communication - Team Collaboration Score
+Collaboration Metric,Score (1-10),Weight,Weighted Score
+Communication Effectiveness,__,30%,__
+Knowledge Sharing,__,25%,__
+Conflict Resolution,__,20%,__
+Cross-functional Support,__,15%,__
+Team Decision Making,__,10%,__
+Total Collaboration Score,,100%,__/100
+
+Meeting Effectiveness
+Meeting Type,Frequency,Attendance Rate,Satisfaction Score,Action Item Completion
+Daily Standup,Daily,__%,__/10,__%
+Sprint Planning,Bi-weekly,__%,__/10,__%
+Retrospectives,Bi-weekly,__%,__/10,__%
+Team Meetings,Weekly,__%,__/10,__%
+
+Knowledge Sharing Activities
+Activity,Participation Rate,Knowledge Retention,Impact Score
+Documentation Updates,__%,__%,__/10
+Training Sessions,__%,__%,__/10
+Mentoring Programs,__%,__%,__/10
+Best Practice Sharing,__%,__%,__/10
+
+Individual Performance Tracking - Team Member Performance Matrix
+Team Member,Role,Productivity Score,Quality Score,Collaboration Score,Overall Score,Development Areas
+[Name],[Role],__/100,__/100,__/100,__/100,[List areas]
+[Name],[Role],__/100,__/100,__/100,__/100,[List areas]
+[Name],[Role],__/100,__/100,__/100,__/100,[List areas]
+[Name],[Role],__/100,__/100,__/100,__/100,[List areas]
+
+Skill Development Tracking
+Team Member,Skill Area,Current Level (1-10),Target Level,Progress This Month,Training Completed
+[Name],[Skill],__,__,+/- __,Yes/No
+[Name],[Skill],__,__,+/- __,Yes/No
+[Name],[Skill],__,__,+/- __,Yes/No
+
+Goal Achievement Tracking
+Team Member,SMART Goal,Target Date,Progress %,Status,Support Needed
+[Name],[Goal description],[Date],__%,On Track/At Risk/Behind,[Support type]
+[Name],[Goal description],[Date],__%,On Track/At Risk/Behind,[Support type]
+
+Team Satisfaction & Engagement - Engagement Survey Results (1-10 Scale)
+Survey Question,Current Score,Previous Score,Trend,Target
+Overall job satisfaction,__,__,↑/↓/→,8+
+Workload manageability,__,__,↑/↓/→,7+
+Team communication,__,__,↑/↓/→,8+
+Leadership effectiveness,__,__,↑/↓/→,8+
+Growth opportunities,__,__,↑/↓/→,7+
+Work-life balance,__,__,↑/↓/→,7+
+
+Team Mood & Energy Tracking
+Week,Team Mood (1-10),Energy Level (1-10),Stress Level (1-10),Motivation (1-10)
+Week 1,__,__,__,__
+Week 2,__,__,__,__
+Week 3,__,__,__,__
+Week 4,__,__,__,__
+
+Recognition & Feedback
+Team Member,Positive Feedback Received,Recognition Given,Peer Nominations,Manager Recognition
+[Name],__,__,__,Yes/No
+[Name],__,__,__,Yes/No
+[Name],__,__,__,Yes/No
+
+Capacity & Resource Utilization - Team Capacity Analysis
+Team Member,Available Hours,Allocated Hours,Utilization %,Capacity Status
+[Name],__,__,__%,Under/Optimal/Over
+[Name],__,__,__%,Under/Optimal/Over
+[Name],__,__,__%,Under/Optimal/Over
+Team Total,__,__,__%,Under/Optimal/Over
+
+Skill Availability Matrix
+Required Skill,Team Members with Skill,Skill Level (1-10),Availability,Backup Available
+[Skill],[Names],__,__%,Yes/No
+[Skill],[Names],__,__%,Yes/No
+[Skill],[Names],__,__%,Yes/No
+
+Bottleneck Analysis
+Potential Bottleneck,Impact Level,Probability,Mitigation Plan,Owner
+[Description],High/Med/Low,High/Med/Low,[Plan],[Name]
+[Description],High/Med/Low,High/Med/Low,[Plan],[Name]
+
+Action Items & Improvement Plans - Performance Improvement Actions
+Issue Identified,Impact,Action Plan,Owner,Target Date,Status
+[Issue],High/Med/Low,[Action plan],[Name],[Date],Open/In Progress/Complete
+[Issue],High/Med/Low,[Action plan],[Name],[Date],Open/In Progress/Complete
+
+Team Development Initiatives
+Initiative,Objective,Participants,Duration,Budget,Expected Outcome
+[Initiative],[Objective],[Names],[Duration],$[Amount],[Outcome]
+[Initiative],[Objective],[Names],[Duration],$[Amount],[Outcome]
+
+Process Improvements
+Process Area,Current State,Target State,Implementation Plan,Timeline
+[Process],[Description],[Description],[Plan],[Timeline]
+[Process],[Description],[Description],[Plan],[Timeline]
+
+Communication & Reporting - Stakeholder Communication Summary
+Stakeholder,Update Frequency,Last Update,Next Update,Satisfaction Level
+Project Sponsor,Weekly,[Date],[Date],High/Med/Low
+Product Owner,Bi-weekly,[Date],[Date],High/Med/Low
+Executive Team,Monthly,[Date],[Date],High/Med/Low
+
+Key Messages for Stakeholders
+Achievements This Period
+[Achievement 1]
+[Achievement 2]
+[Achievement 3]
+
+Challenges & Risks
+[Challenge 1] - Impact: [Description] - Action: [Action]
+[Challenge 2] - Impact: [Description] - Action: [Action]
+
+Support Needed
+[Support item 1]
+[Support item 2]
+
+Trend Analysis & Predictions - Performance Trends (Last 4 Periods)
+Metric,Period 1,Period 2,Period 3,Current,Prediction Next Period
+Productivity Score,__,__,__,__,__
+Quality Score,__,__,__,__,__
+Team Satisfaction,__,__,__,__,__
+Goal Achievement,__,__,__,__,__
+
+Recommendations for Next Period
+Continue
+[What's working well]
+[Successful practices]
+
+Start
+[New initiatives to begin]
+[Areas for improvement]
+
+Stop
+[Ineffective practices]
+[Activities to discontinue]
+
+Dashboard Created by: Nicholas Njoku Certified Project Manager
+Asana Workflow Specialist Certified
+Contact: nicholascents77@gmail.com
+Document Version: 1.0
+Last Updated: 2025
+
+This performance dashboard should be updated regularly and customized based on your team's specific goals roles and organizational context. Use this template to track progress identify improvement opportunities and support team development.
