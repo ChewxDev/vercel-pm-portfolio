@@ -1,5 +1,6 @@
 import { z } from "zod";
 
+// Contact form validation schema
 export const insertContactSubmissionSchema = z.object({
   name: z.string().min(1, "Name is required"),
   email: z.string().email("Valid email is required"),
@@ -17,3 +18,40 @@ export type ContactSubmission = z.infer<
   id: string;
   created_at: string;
 };
+
+// Project type definition
+export interface Project {
+  id: string;
+  title: string;
+  description: string;
+  category: string;
+  status: string;
+  duration: string;
+  team_size: number;
+  teamSize: number;
+  budget: string;
+  client: string;
+  company: string;
+  icon: string;
+  technologies: string[];
+  challenges: string[];
+  solutions: string[];
+  outcomes: string[];
+  methodologies: string[];
+  key_milestones: Array<{
+    milestone: string;
+    date: string;
+    status: string;
+  }>;
+  skills_used: string[];
+  skills: string[];
+  metrics: Array<{
+    label: string;
+    value: string;
+    improvement: string;
+    description: string;
+  }>;
+  responsibilities: string[];
+  achievements: string[];
+  color: string;
+}
