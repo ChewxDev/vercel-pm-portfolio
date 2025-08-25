@@ -34,30 +34,47 @@ export default async function handler(req, res) {
         const { Resend } = await import("resend");
         const resend = new Resend(process.env.RESEND_API_KEY);
 
-        // Send notification email to Nicholas
+        // Send notification email to Nicholas with more details
         await resend.emails.send({
           from: "onboarding@resend.dev", // Use verified domain
           to: ["nicholascents77@gmail.com"],
-          subject: `New Project Inquiry from ${name}`,
+          subject: `🚀 New Project Inquiry from ${name}`,
           html: `
-            <h2>New Contact Form Submission</h2>
-            <p><strong>Name:</strong> ${name}</p>
-            <p><strong>Email:</strong> ${email}</p>
-            <p><strong>Company:</strong> ${company || "Not provided"}</p>
-            <p><strong>Project Type:</strong> ${projectType}</p>
-            <p><strong>Timeline:</strong> ${timeline}</p>
-            <p><strong>Budget:</strong> ${budget}</p>
-            <p><strong>Message:</strong></p>
-            <p>${message}</p>
+            <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+              <h2 style="color: #2563eb;">New Contact Form Submission</h2>
+              <div style="background: #f8fafc; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                <h3 style="margin-top: 0;">Contact Information</h3>
+                <p><strong>Name:</strong> ${name}</p>
+                <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
+                <p><strong>Company:</strong> ${company || "Not provided"}</p>
+              </div>
+              <div style="background: #f1f5f9; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                <h3 style="margin-top: 0;">Project Details</h3>
+                <p><strong>Project Type:</strong> ${projectType}</p>
+                <p><strong>Timeline:</strong> ${timeline}</p>
+                <p><strong>Budget:</strong> ${budget}</p>
+              </div>
+              <div style="background: #fefefe; padding: 20px; border: 1px solid #e2e8f0; border-radius: 8px;">
+                <h3 style="margin-top: 0;">Message</h3>
+                <p style="white-space: pre-wrap;">${message}</p>
+              </div>
+              <p style="margin-top: 30px; color: #64748b; font-size: 14px;">
+                This email was sent from your portfolio contact form at ${new Date().toLocaleString()}.
+              </p>
+            </div>
           `,
         });
 
         emailSent = true;
-        console.log("Email notifications sent successfully");
+        console.log(
+          "Email notifications sent successfully to nicholascents77@gmail.com"
+        );
       } catch (emailError) {
         console.error("Email sending failed:", emailError);
         // Continue anyway - don't fail the form submission
       }
+    } else {
+      console.log("RESEND_API_KEY not configured - email not sent");
     }
 
     // Log successful submission
