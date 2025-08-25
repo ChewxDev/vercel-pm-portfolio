@@ -242,7 +242,6 @@ export default function ContactSection() {
             <div className="mt-8 p-6 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl text-white">
               <h4 className="font-semibold mb-2">Why Work With Me?</h4>
               <ul className="space-y-1 text-blue-100">
-                <li>• 5+ years of project management expertise</li>
                 <li>• Proven track record with 90%+ on-time delivery</li>
                 <li>• Experience across multiple industries</li>
                 <li>• Strong focus on stakeholder communication</li>
