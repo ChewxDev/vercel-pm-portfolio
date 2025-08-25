@@ -51,63 +51,27 @@ export default function ContactSection() {
       console.log("Timestamp:", new Date().toLocaleString());
       console.log("=================================");
 
-      // Send email using Resend directly from frontend
+      // Try to send via backend API
       let emailSent = false;
 
       try {
-        const emailData = {
-          from: "onboarding@resend.dev",
-          to: ["nicholascents77@gmail.com"],
-          subject: `🚀 New Project Inquiry from ${data.name}`,
-          html: `
-            <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-              <h2 style="color: #2563eb;">New Contact Form Submission</h2>
-              <div style="background: #f8fafc; padding: 20px; border-radius: 8px; margin: 20px 0;">
-                <h3 style="margin-top: 0;">Contact Information</h3>
-                <p><strong>Name:</strong> ${data.name}</p>
-                <p><strong>Email:</strong> <a href="mailto:${data.email}">${
-            data.email
-          }</a></p>
-                <p><strong>Company:</strong> ${
-                  data.company || "Not provided"
-                }</p>
-              </div>
-              <div style="background: #f1f5f9; padding: 20px; border-radius: 8px; margin: 20px 0;">
-                <h3 style="margin-top: 0;">Project Details</h3>
-                <p><strong>Project Type:</strong> ${data.projectType}</p>
-                <p><strong>Timeline:</strong> ${data.timeline}</p>
-                <p><strong>Budget:</strong> ${data.budget}</p>
-              </div>
-              <div style="background: #fefefe; padding: 20px; border: 1px solid #e2e8f0; border-radius: 8px;">
-                <h3 style="margin-top: 0;">Message</h3>
-                <p style="white-space: pre-wrap;">${data.message}</p>
-              </div>
-              <p style="margin-top: 30px; color: #64748b; font-size: 14px;">
-                This email was sent from your portfolio contact form at ${new Date().toLocaleString()}.
-              </p>
-            </div>
-          `,
-        };
-
-        const response = await fetch("https://api.resend.com/emails", {
+        const response = await fetch("/api/contact", {
           method: "POST",
           headers: {
-            Authorization: "Bearer re_N1KaPZJN_BSGpDZiKa1voMC5KiAZXTa3h",
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(emailData),
+          body: JSON.stringify(data),
         });
 
         if (response.ok) {
           const result = await response.json();
-          console.log("✅ Email sent successfully:", result.id);
-          emailSent = true;
+          console.log("✅ API call successful:", result);
+          emailSent = result.emailSent || false;
         } else {
-          const error = await response.text();
-          console.log("⚠️ Email failed:", response.status, error);
+          console.log("⚠️ API call failed but form still works");
         }
-      } catch (emailError) {
-        console.log("⚠️ Email error:", emailError);
+      } catch (error) {
+        console.log("⚠️ Network error but form still works:", error);
       }
 
       // Store in localStorage for backup
