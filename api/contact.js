@@ -1,4 +1,6 @@
-module.exports = async function handler(req, res) {
+import { Resend } from "resend";
+
+export default async function handler(req, res) {
   // Set CORS headers
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
@@ -30,8 +32,6 @@ module.exports = async function handler(req, res) {
     // Try to send email if RESEND_API_KEY is configured
     if (process.env.RESEND_API_KEY) {
       try {
-        // Use require instead of import for Vercel compatibility
-        const { Resend } = require("resend");
         const resend = new Resend(process.env.RESEND_API_KEY);
 
         // Send notification email to Nicholas with more details
@@ -102,4 +102,4 @@ module.exports = async function handler(req, res) {
       note: "Message received but email delivery may be delayed",
     });
   }
-};
+}
