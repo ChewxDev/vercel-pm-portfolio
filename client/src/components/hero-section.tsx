@@ -3,46 +3,26 @@ import { useInView } from "react-intersection-observer";
 import { useState, useEffect } from "react";
 
 // Animated counter component
-function AnimatedCounter({
-  end,
-  duration = 2000,
-  suffix = "",
-}: {
-  end: number;
-  duration?: number;
-  suffix?: string;
-}) {
+function AnimatedCounter({ end, duration = 2000, suffix = "" }: { end: number; duration?: number; suffix?: string }) {
   const [count, setCount] = useState(0);
   const { ref, inView } = useInView({ threshold: 0.3, triggerOnce: true });
 
   useEffect(() => {
     if (inView) {
       let startTime: number;
-      let animationId: number;
       const animate = (currentTime: number) => {
         if (!startTime) startTime = currentTime;
         const progress = Math.min((currentTime - startTime) / duration, 1);
         setCount(Math.floor(progress * end));
         if (progress < 1) {
-          animationId = requestAnimationFrame(animate);
+          requestAnimationFrame(animate);
         }
       };
-      animationId = requestAnimationFrame(animate);
-
-      return () => {
-        if (animationId) {
-          cancelAnimationFrame(animationId);
-        }
-      };
+      requestAnimationFrame(animate);
     }
   }, [inView, end, duration]);
 
-  return (
-    <span ref={ref}>
-      {count}
-      {suffix}
-    </span>
-  );
+  return <span ref={ref}>{count}{suffix}</span>;
 }
 
 export default function HeroSection() {
@@ -54,10 +34,7 @@ export default function HeroSection() {
   };
 
   return (
-    <section
-      id="overview"
-      className="bg-blue-600 bg-gradient-to-br from-primary to-blue-700 text-white py-20 mt-16 overflow-hidden"
-    >
+    <section id="overview" className="bg-gradient-to-br from-primary to-blue-700 text-white py-20 mt-16 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <motion.div
@@ -65,13 +42,13 @@ export default function HeroSection() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <motion.div
+            <motion.div 
               className="flex items-center mb-6"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <motion.div
+              <motion.div 
                 className="bg-white/20 p-3 rounded-full mr-4"
                 whileHover={{ scale: 1.1, rotate: 5 }}
                 transition={{ type: "spring", stiffness: 300 }}
@@ -79,8 +56,8 @@ export default function HeroSection() {
                 <i className="fas fa-project-diagram text-2xl"></i>
               </motion.div>
               <div>
-                <motion.h1
-                  className="text-4xl font-bold mb-2"
+                <motion.h1 
+                  className="text-4xl font-bold mb-2" 
                   data-testid="hero-title"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
@@ -88,8 +65,8 @@ export default function HeroSection() {
                 >
                   Project Management Portfolio
                 </motion.h1>
-                <motion.p
-                  className="text-xl text-blue-100"
+                <motion.p 
+                  className="text-xl text-blue-100" 
                   data-testid="hero-subtitle"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
@@ -99,39 +76,33 @@ export default function HeroSection() {
                 </motion.p>
               </div>
             </motion.div>
-
-            <motion.div
+            
+            <motion.div 
               className="mb-8"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.8 }}
             >
-              <motion.div
+              <motion.div 
                 className="flex items-center mb-4"
                 whileHover={{ x: 5 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
-                <motion.i
+                <motion.i 
                   className="fas fa-certificate text-secondary mr-3"
                   animate={{ rotate: [0, 10, -10, 0] }}
                   transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
                 />
-                <span className="font-semibold">
-                  Asana Workflow Specialist Certified
-                </span>
+                <span className="font-semibold">Asana Workflow Specialist Certified</span>
               </motion.div>
-              <p
-                className="text-blue-100 text-lg leading-relaxed"
-                data-testid="hero-description"
-              >
-                Computer Science graduate with proven expertise in managing
-                cross-functional projects, implementing process improvements,
-                and delivering measurable business outcomes across diverse
-                industries including retail, technology, and digital media.
+              <p className="text-blue-100 text-lg leading-relaxed" data-testid="hero-description">
+                Computer Science graduate with proven expertise in managing cross-functional projects, 
+                implementing process improvements, and delivering measurable business outcomes across 
+                diverse industries including retail, technology, and digital media.
               </p>
             </motion.div>
 
-            <motion.div
+            <motion.div 
               className="flex flex-wrap gap-4"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -160,14 +131,14 @@ export default function HeroSection() {
             </motion.div>
           </motion.div>
 
-          <motion.div
+          <motion.div 
             className="grid grid-cols-2 gap-6"
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <motion.div
-              className="bg-white/10 backdrop-blur-sm p-6 rounded-xl"
+            <motion.div 
+              className="bg-white/10 backdrop-blur-sm p-6 rounded-xl" 
               data-testid="metric-budget"
               whileHover={{ scale: 1.05, y: -5 }}
               transition={{ type: "spring", stiffness: 300 }}
@@ -175,12 +146,10 @@ export default function HeroSection() {
               <div className="text-3xl font-bold mb-2">
                 <AnimatedCounter end={92} suffix="%" />
               </div>
-              <div className="text-sm text-blue-100">
-                Projects Delivered Within Budget
-              </div>
+              <div className="text-sm text-blue-100">Projects Delivered Within Budget</div>
             </motion.div>
-            <motion.div
-              className="bg-white/10 backdrop-blur-sm p-6 rounded-xl"
+            <motion.div 
+              className="bg-white/10 backdrop-blur-sm p-6 rounded-xl" 
               data-testid="metric-efficiency"
               whileHover={{ scale: 1.05, y: -5 }}
               transition={{ type: "spring", stiffness: 300 }}
@@ -188,12 +157,10 @@ export default function HeroSection() {
               <div className="text-3xl font-bold mb-2">
                 <AnimatedCounter end={25} suffix="%" />
               </div>
-              <div className="text-sm text-blue-100">
-                Average Efficiency Improvement
-              </div>
+              <div className="text-sm text-blue-100">Average Efficiency Improvement</div>
             </motion.div>
-            <motion.div
-              className="bg-white/10 backdrop-blur-sm p-6 rounded-xl"
+            <motion.div 
+              className="bg-white/10 backdrop-blur-sm p-6 rounded-xl" 
               data-testid="metric-team"
               whileHover={{ scale: 1.05, y: -5 }}
               transition={{ type: "spring", stiffness: 300 }}
@@ -203,8 +170,8 @@ export default function HeroSection() {
               </div>
               <div className="text-sm text-blue-100">Team Members Managed</div>
             </motion.div>
-            <motion.div
-              className="bg-white/10 backdrop-blur-sm p-6 rounded-xl"
+            <motion.div 
+              className="bg-white/10 backdrop-blur-sm p-6 rounded-xl" 
               data-testid="metric-success"
               whileHover={{ scale: 1.05, y: -5 }}
               transition={{ type: "spring", stiffness: 300 }}
