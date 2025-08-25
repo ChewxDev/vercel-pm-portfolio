@@ -1,4 +1,4 @@
-module.exports = async function handler(req, res) {
+export default async function handler(req, res) {
   // Set CORS headers
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
@@ -27,8 +27,8 @@ module.exports = async function handler(req, res) {
     // Send email if RESEND_API_KEY is configured
     if (process.env.RESEND_API_KEY) {
       try {
-        // Import Resend using require for CommonJS
-        const { Resend } = require("resend");
+        // Dynamic import for Resend (since it's an ES module)
+        const { Resend } = await import("resend");
         const resend = new Resend(process.env.RESEND_API_KEY);
 
         // Send notification email to Nicholas
@@ -91,4 +91,4 @@ module.exports = async function handler(req, res) {
     console.error("Contact form error:", error);
     res.status(500).json({ message: "Failed to send message" });
   }
-};
+}
