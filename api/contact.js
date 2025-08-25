@@ -1,5 +1,3 @@
-import { Resend } from "resend";
-
 export default async function handler(req, res) {
   // Set CORS headers
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -26,17 +24,25 @@ export default async function handler(req, res) {
       return;
     }
 
-    // Always return success, even if email fails
+    // Log the full submission for debugging
+    console.log("=== NEW CONTACT FORM SUBMISSION ===");
+    console.log("Timestamp:", new Date().toISOString());
+    console.log("Name:", name);
+    console.log("Email:", email);
+    console.log("Company:", company || "Not provided");
+    console.log("Project Type:", projectType);
+    console.log("Timeline:", timeline);
+    console.log("Budget:", budget);
+    console.log("Message:", message);
+    console.log("RESEND_API_KEY present:", !!process.env.RESEND_API_KEY);
+
     let emailSent = false;
 
-    // Try to send email if RESEND_API_KEY is configured
+    // Try to send email using simple fetch to Resend API
     if (process.env.RESEND_API_KEY) {
       try {
-        const resend = new Resend(process.env.RESEND_API_KEY);
-
-        // Send notification email to Nicholas with more details
-        await resend.emails.send({
-          from: "onboarding@resend.dev", // Use verified domain
+        const emailData = {
+          from: "onboarding@resend.dev",
           to: ["nicholascents77@gmail.com"],
           subject: `🚀 New Project Inquiry from ${name}`,
           html: `
@@ -63,26 +69,34 @@ export default async function handler(req, res) {
               </p>
             </div>
           `,
+        };
+
+        const response = await fetch("https://api.resend.com/emails", {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(emailData),
         });
 
-        emailSent = true;
-        console.log(
-          "Email notifications sent successfully to nicholascents77@gmail.com"
-        );
+        if (response.ok) {
+          const result = await response.json();
+          console.log("Email sent successfully:", result);
+          emailSent = true;
+        } else {
+          const error = await response.text();
+          console.error("Email sending failed:", response.status, error);
+        }
       } catch (emailError) {
-        console.error("Email sending failed:", emailError);
-        // Continue anyway - don't fail the form submission
+        console.error("Email error:", emailError);
       }
     } else {
       console.log("RESEND_API_KEY not configured - email not sent");
     }
 
-    // Log successful submission
-    console.log(`New contact submission from ${name} (${email})`);
-    console.log(
-      `Project: ${projectType}, Timeline: ${timeline}, Budget: ${budget}`
-    );
-    console.log(`Email sent: ${emailSent}`);
+    console.log("Email sent status:", emailSent);
+    console.log("=== END SUBMISSION ===");
 
     // Always return success
     res.status(200).json({
