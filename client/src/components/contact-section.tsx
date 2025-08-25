@@ -38,7 +38,7 @@ export default function ContactSection() {
 
   const submitContactMutation = useMutation({
     mutationFn: async (data: ContactForm) => {
-      // Log the submission to browser console so user can see it
+      // Log the submission to browser console
       console.log("🚀 NEW CONTACT FORM SUBMISSION 🚀");
       console.log("=================================");
       console.log("Name:", data.name);
@@ -50,39 +50,67 @@ export default function ContactSection() {
       console.log("Message:", data.message);
       console.log("Timestamp:", new Date().toLocaleString());
       console.log("=================================");
-      console.log("📋 Copy this information to contact Nicholas:");
-      console.log(`Subject: New Project Inquiry from ${data.name}`);
-      console.log(`To: nicholascents77@gmail.com`);
-      console.log("=================================");
 
-      // Create email body for backup
-      const emailBody = `New Project Inquiry from ${data.name}
+      // Send email using Resend directly from frontend
+      let emailSent = false;
 
-Contact Information:
-- Name: ${data.name}
-- Email: ${data.email}
-- Company: ${data.company || "Not provided"}
+      try {
+        const emailData = {
+          from: "onboarding@resend.dev",
+          to: ["nicholascents77@gmail.com"],
+          subject: `🚀 New Project Inquiry from ${data.name}`,
+          html: `
+            <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+              <h2 style="color: #2563eb;">New Contact Form Submission</h2>
+              <div style="background: #f8fafc; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                <h3 style="margin-top: 0;">Contact Information</h3>
+                <p><strong>Name:</strong> ${data.name}</p>
+                <p><strong>Email:</strong> <a href="mailto:${data.email}">${
+            data.email
+          }</a></p>
+                <p><strong>Company:</strong> ${
+                  data.company || "Not provided"
+                }</p>
+              </div>
+              <div style="background: #f1f5f9; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                <h3 style="margin-top: 0;">Project Details</h3>
+                <p><strong>Project Type:</strong> ${data.projectType}</p>
+                <p><strong>Timeline:</strong> ${data.timeline}</p>
+                <p><strong>Budget:</strong> ${data.budget}</p>
+              </div>
+              <div style="background: #fefefe; padding: 20px; border: 1px solid #e2e8f0; border-radius: 8px;">
+                <h3 style="margin-top: 0;">Message</h3>
+                <p style="white-space: pre-wrap;">${data.message}</p>
+              </div>
+              <p style="margin-top: 30px; color: #64748b; font-size: 14px;">
+                This email was sent from your portfolio contact form at ${new Date().toLocaleString()}.
+              </p>
+            </div>
+          `,
+        };
 
-Project Details:
-- Project Type: ${data.projectType}
-- Timeline: ${data.timeline}
-- Budget: ${data.budget}
+        const response = await fetch("https://api.resend.com/emails", {
+          method: "POST",
+          headers: {
+            Authorization: "Bearer re_N1KaPZJN_BSGpDZiKa1voMC5KiAZXTa3h",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(emailData),
+        });
 
-Message:
-${data.message}
+        if (response.ok) {
+          const result = await response.json();
+          console.log("✅ Email sent successfully:", result.id);
+          emailSent = true;
+        } else {
+          const error = await response.text();
+          console.log("⚠️ Email failed:", response.status, error);
+        }
+      } catch (emailError) {
+        console.log("⚠️ Email error:", emailError);
+      }
 
-Submitted: ${new Date().toLocaleString()}`;
-
-      // Try to open email client as backup
-      const emailSubject = `New Project Inquiry from ${data.name}`;
-      const emailTo = "nicholascents77@gmail.com";
-      const emailUrl = `mailto:${emailTo}?subject=${encodeURIComponent(
-        emailSubject
-      )}&body=${encodeURIComponent(emailBody)}`;
-
-      console.log("📧 Email URL for manual sending:", emailUrl);
-
-      // Store in localStorage for persistence
+      // Store in localStorage for backup
       try {
         const submissions = JSON.parse(
           localStorage.getItem("contactSubmissions") || "[]"
@@ -91,8 +119,8 @@ Submitted: ${new Date().toLocaleString()}`;
           ...data,
           timestamp: new Date().toISOString(),
           id: `submission-${Date.now()}`,
+          emailSent,
         });
-        // Keep only last 10 submissions
         localStorage.setItem(
           "contactSubmissions",
           JSON.stringify(submissions.slice(0, 10))
@@ -102,13 +130,18 @@ Submitted: ${new Date().toLocaleString()}`;
         console.log("Storage unavailable");
       }
 
+      console.log(
+        emailSent
+          ? "📧 Email sent to nicholascents77@gmail.com"
+          : "❌ Email failed - check console"
+      );
+
       // Always return success
       return {
         message:
           "Thank you for your message! I'll review your project details and get back to you within 24-48 hours.",
         id: `submission-${Date.now()}`,
-        emailSent: false,
-        note: "Contact details logged to console",
+        emailSent,
       };
     },
     onSuccess: () => {
