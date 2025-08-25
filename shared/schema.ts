@@ -28,11 +28,11 @@ export interface Project {
   status: string;
   duration: string;
   team_size: number;
-  teamSize: number;
+  teamSize: number; // ADD THIS
   budget: string;
   client: string;
-  company: string;
-  icon: string;
+  company: string; // ADD THIS
+  icon: string; // ADD THIS
   technologies: string[];
   challenges: string[];
   solutions: string[];
@@ -44,12 +44,12 @@ export interface Project {
     status: string;
   }>;
   skills_used: string[];
-  skills: string[];
+  skills: string[]; // ADD THIS
   metrics: Array<{
     label: string;
     value: string;
     improvement: string;
-    description: string;
+    description: string; // ADD THIS
   }>;
   responsibilities: string[];
   achievements: string[];
