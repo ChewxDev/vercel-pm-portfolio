@@ -18,12 +18,6 @@ A modern, professional portfolio website showcasing project management expertise
 4. **Environment Variables**: Add your `RESEND_API_KEY` in Vercel dashboard
 5. **Deploy**: Click deploy!
 
-## Environment Variables Required
-
-```
-RESEND_API_KEY=your_resend_api_key_here
-```
-
 ## Contact Information
 
 - Email: nicholascents77@gmail.com
